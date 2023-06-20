@@ -1,0 +1,191 @@
+hduser@bmsce-Precision-T1700:~$ start-all.sh
+This script is Deprecated. Instead use start-dfs.sh and start-yarn.sh
+Starting namenodes on [localhost]
+hduser@localhost's password:
+localhost: namenode running as process 7093. Stop it first.
+hduser@localhost's password:
+localhost: datanode running as process 7268. Stop it first.
+Starting secondary namenodes [0.0.0.0]
+hduser@0.0.0.0's password:
+0.0.0.0: secondarynamenode running as process 7482. Stop it first.
+starting yarn daemons
+resourcemanager running as process 7641. Stop it first.
+hduser@localhost's password:
+localhost: nodemanager running as process 7974. Stop it first.
+hduser@bmsce-Precision-T1700:~$ jps
+9937 Jps
+7268 DataNode
+7093 NameNode
+7974 NodeManager
+8168 org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar
+7641 ResourceManager
+7482 SecondaryNameNode
+hduser@bmsce-Precision-T1700:~$ hadoop fs -ls
+ls: `.': No such file or directory
+hduser@bmsce-Precision-T1700:~$ hadoop fs -ls /
+Found 19 items
+drwxr-xr-x   - hduser supergroup          0 2023-05-11 14:25 /CSE
+drwxr-xr-x   - hduser supergroup          0 2023-05-11 13:58 /FFF
+drwxr-xr-x   - hduser supergroup          0 2023-05-11 14:31 /LLL
+drwxr-xr-x   - hduser supergroup          0 2019-10-23 16:07 /STUDENT_INFO
+drwxr-xr-x   - hduser supergroup          0 2023-05-11 13:54 /afifah
+drwxr-xr-x   - hduser supergroup          0 2019-10-23 15:08 /arv
+drwxr-xr-x   - hduser supergroup          0 2023-05-11 15:00 /first
+drwxr-xr-x   - hduser supergroup          0 2023-05-04 13:05 /inputbda
+drwxr-xr-x   - hduser supergroup          0 2023-04-27 11:48 /lab5hadoop
+drwxr-xr-x   - hduser supergroup          0 2023-05-08 09:40 /new_folder
+drwxr-xr-x   - hduser supergroup          0 2022-06-14 10:14 /output
+drwxr-xr-x   - hduser supergroup          0 2023-05-04 13:15 /outputbda
+drwxr-xr-x   - hduser supergroup          0 2022-06-14 10:09 /rgs
+drwxr-xr-x   - hduser supergroup          0 2023-05-12 11:58 /tempinput
+-rw-r--r--   1 hduser supergroup     888190 2023-05-12 12:55 /tempinput1
+drwxr-xr-x   - hduser supergroup          0 2023-05-12 12:56 /tempout
+drwxr-xr-x   - hduser supergroup          0 2023-04-27 11:47 /test
+drwxrwxr-x   - hduser supergroup          0 2019-10-23 15:36 /tmp
+drwxr-xr-x   - hduser supergroup          0 2019-08-01 16:03 /user
+hduser@bmsce-Precision-T1700:~$ hadoop fs -mkdir /rgs
+mkdir: `/rgs': File exists
+hduser@bmsce-Precision-T1700:~$ hadoop fs -copyFromLocal /home/hduser/Desktop/sample.txt /rgs/test.txt
+copyFromLocal: `/rgs/test.txt': File exists
+hduser@bmsce-Precision-T1700:~$ hadoop fs -copyFromLocal /home/hduser/Desktop/sample.txt /rgs/test1.txt
+hduser@bmsce-Precision-T1700:~$ hadoop jar /home/hduser/Desktop/WordCount.jar WCDRiver /rgs/test1.txt /home/hduser/Desktop/abc.txt
+Exception in thread "main" java.lang.ClassNotFoundException: WCDRiver
+at java.net.URLClassLoader.findClass(URLClassLoader.java:382)
+at java.lang.ClassLoader.loadClass(ClassLoader.java:418)
+at java.lang.ClassLoader.loadClass(ClassLoader.java:351)
+at java.lang.Class.forName0(Native Method)
+at java.lang.Class.forName(Class.java:348)
+at org.apache.hadoop.util.RunJar.run(RunJar.java:214)
+at org.apache.hadoop.util.RunJar.main(RunJar.java:136)
+hduser@bmsce-Precision-T1700:~$ hadoop jar /home/hduser/Desktop/WordCount.jar WCDriver /rgs/test1.txt /home/hduser/Desktop/abc.txt
+23/05/17 10:07:35 INFO Configuration.deprecation: session.id is deprecated. Instead, use dfs.metrics.session-id
+23/05/17 10:07:35 INFO jvm.JvmMetrics: Initializing JVM Metrics with processName=JobTracker, sessionId=
+23/05/17 10:07:35 INFO jvm.JvmMetrics: Cannot initialize JVM Metrics with processName=JobTracker, sessionId= - already initialized
+23/05/17 10:07:35 WARN mapreduce.JobSubmitter: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+23/05/17 10:07:35 INFO mapred.FileInputFormat: Total input paths to process : 1
+23/05/17 10:07:35 INFO mapreduce.JobSubmitter: number of splits:1
+23/05/17 10:07:36 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_local713144167_0001
+23/05/17 10:07:36 INFO mapreduce.Job: The url to track the job: http://localhost:8080/
+23/05/17 10:07:36 INFO mapred.LocalJobRunner: OutputCommitter set in config null
+23/05/17 10:07:36 INFO mapreduce.Job: Running job: job_local713144167_0001
+23/05/17 10:07:36 INFO mapred.LocalJobRunner: OutputCommitter is org.apache.hadoop.mapred.FileOutputCommitter
+23/05/17 10:07:36 INFO mapred.LocalJobRunner: Waiting for map tasks
+23/05/17 10:07:36 INFO mapred.LocalJobRunner: Starting task: attempt_local713144167_0001_m_000000_0
+23/05/17 10:07:36 INFO mapred.Task:  Using ResourceCalculatorProcessTree : [ ]
+23/05/17 10:07:36 INFO mapred.MapTask: Processing split: hdfs://localhost:54310/rgs/test1.txt:0+89
+23/05/17 10:07:36 INFO mapred.MapTask: numReduceTasks: 1
+23/05/17 10:07:36 INFO mapred.MapTask: (EQUATOR) 0 kvi 26214396(104857584)
+23/05/17 10:07:36 INFO mapred.MapTask: mapreduce.task.io.sort.mb: 100
+23/05/17 10:07:36 INFO mapred.MapTask: soft limit at 83886080
+23/05/17 10:07:36 INFO mapred.MapTask: bufstart = 0; bufvoid = 104857600
+23/05/17 10:07:36 INFO mapred.MapTask: kvstart = 26214396; length = 6553600
+23/05/17 10:07:36 INFO mapred.MapTask: Map output collector class = org.apache.hadoop.mapred.MapTask$MapOutputBuffer
+23/05/17 10:07:36 INFO mapred.LocalJobRunner:
+23/05/17 10:07:36 INFO mapred.MapTask: Starting flush of map output
+23/05/17 10:07:36 INFO mapred.MapTask: Spilling map output
+23/05/17 10:07:36 INFO mapred.MapTask: bufstart = 0; bufend = 504; bufvoid = 104857600
+23/05/17 10:07:36 INFO mapred.MapTask: kvstart = 26214396(104857584); kvend = 26214064(104856256); length = 333/6553600
+23/05/17 10:07:36 INFO mapred.MapTask: Finished spill 0
+23/05/17 10:07:36 INFO mapred.Task: Task:attempt_local713144167_0001_m_000000_0 is done. And is in the process of committing
+23/05/17 10:07:36 INFO mapred.LocalJobRunner: hdfs://localhost:54310/rgs/test1.txt:0+89
+23/05/17 10:07:36 INFO mapred.Task: Task 'attempt_local713144167_0001_m_000000_0' done.
+23/05/17 10:07:36 INFO mapred.LocalJobRunner: Finishing task: attempt_local713144167_0001_m_000000_0
+23/05/17 10:07:36 INFO mapred.LocalJobRunner: map task executor complete.
+23/05/17 10:07:36 INFO mapred.LocalJobRunner: Waiting for reduce tasks
+23/05/17 10:07:36 INFO mapred.LocalJobRunner: Starting task: attempt_local713144167_0001_r_000000_0
+23/05/17 10:07:36 INFO mapred.Task:  Using ResourceCalculatorProcessTree : [ ]
+23/05/17 10:07:36 INFO mapred.ReduceTask: Using ShuffleConsumerPlugin: org.apache.hadoop.mapreduce.task.reduce.Shuffle@3c36154e
+23/05/17 10:07:36 INFO reduce.MergeManagerImpl: MergerManager: memoryLimit=334338464, maxSingleShuffleLimit=83584616, mergeThreshold=220663392, ioSortFactor=10, memToMemMergeOutputsThreshold=10
+23/05/17 10:07:36 INFO reduce.EventFetcher: attempt_local713144167_0001_r_000000_0 Thread started: EventFetcher for fetching Map Completion Events
+23/05/17 10:07:36 INFO reduce.LocalFetcher: localfetcher#1 about to shuffle output of map attempt_local713144167_0001_m_000000_0 decomp: 674 len: 678 to MEMORY
+23/05/17 10:07:36 INFO reduce.InMemoryMapOutput: Read 674 bytes from map-output for attempt_local713144167_0001_m_000000_0
+23/05/17 10:07:36 INFO reduce.MergeManagerImpl: closeInMemoryFile -> map-output of size: 674, inMemoryMapOutputs.size() -> 1, commitMemory -> 0, usedMemory ->674
+23/05/17 10:07:36 INFO reduce.EventFetcher: EventFetcher is interrupted.. Returning
+23/05/17 10:07:36 INFO mapred.LocalJobRunner: 1 / 1 copied.
+23/05/17 10:07:36 INFO reduce.MergeManagerImpl: finalMerge called with 1 in-memory map-outputs and 0 on-disk map-outputs
+23/05/17 10:07:36 INFO mapred.Merger: Merging 1 sorted segments
+23/05/17 10:07:36 INFO mapred.Merger: Down to the last merge-pass, with 1 segments left of total size: 670 bytes
+23/05/17 10:07:36 INFO reduce.MergeManagerImpl: Merged 1 segments, 674 bytes to disk to satisfy reduce memory limit
+23/05/17 10:07:36 INFO reduce.MergeManagerImpl: Merging 1 files, 678 bytes from disk
+23/05/17 10:07:36 INFO reduce.MergeManagerImpl: Merging 0 segments, 0 bytes from memory into reduce
+23/05/17 10:07:36 INFO mapred.Merger: Merging 1 sorted segments
+23/05/17 10:07:36 INFO mapred.Merger: Down to the last merge-pass, with 1 segments left of total size: 670 bytes
+23/05/17 10:07:36 INFO mapred.LocalJobRunner: 1 / 1 copied.
+23/05/17 10:07:36 INFO mapred.Task: Task:attempt_local713144167_0001_r_000000_0 is done. And is in the process of committing
+23/05/17 10:07:36 INFO mapred.LocalJobRunner: 1 / 1 copied.
+23/05/17 10:07:36 INFO mapred.Task: Task attempt_local713144167_0001_r_000000_0 is allowed to commit now
+23/05/17 10:07:36 INFO output.FileOutputCommitter: Saved output of task 'attempt_local713144167_0001_r_000000_0' to hdfs://localhost:54310/home/hduser/Desktop/abc.txt/_temporary/0/task_local713144167_0001_r_000000
+23/05/17 10:07:36 INFO mapred.LocalJobRunner: reduce > reduce
+23/05/17 10:07:36 INFO mapred.Task: Task 'attempt_local713144167_0001_r_000000_0' done.
+23/05/17 10:07:36 INFO mapred.LocalJobRunner: Finishing task: attempt_local713144167_0001_r_000000_0
+23/05/17 10:07:36 INFO mapred.LocalJobRunner: reduce task executor complete.
+23/05/17 10:07:37 INFO mapreduce.Job: Job job_local713144167_0001 running in uber mode : false
+23/05/17 10:07:37 INFO mapreduce.Job:  map 100% reduce 100%
+23/05/17 10:07:37 INFO mapreduce.Job: Job job_local713144167_0001 completed successfully
+23/05/17 10:07:37 INFO mapreduce.Job: Counters: 38
+File System Counters
+FILE: Number of bytes read=9644
+FILE: Number of bytes written=511622
+FILE: Number of read operations=0
+FILE: Number of large read operations=0
+FILE: Number of write operations=0
+HDFS: Number of bytes read=178
+HDFS: Number of bytes written=70
+HDFS: Number of read operations=13
+HDFS: Number of large read operations=0
+HDFS: Number of write operations=4
+Map-Reduce Framework
+Map input records=5
+Map output records=84
+Map output bytes=504
+Map output materialized bytes=678
+Input split bytes=88
+Combine input records=0
+Combine output records=0
+Reduce input groups=17
+Reduce shuffle bytes=678
+Reduce input records=84
+Reduce output records=17
+Spilled Records=168
+Shuffled Maps =1
+Failed Shuffles=0
+Merged Map outputs=1
+GC time elapsed (ms)=2
+CPU time spent (ms)=0
+Physical memory (bytes) snapshot=0
+Virtual memory (bytes) snapshot=0
+Total committed heap usage (bytes)=466616320
+Shuffle Errors
+BAD_ID=0
+CONNECTION=0
+IO_ERROR=0
+WRONG_LENGTH=0
+WRONG_MAP=0
+WRONG_REDUCE=0
+File Input Format Counters
+Bytes Read=89
+File Output Format Counters
+Bytes Written=70
+0
+hduser@bmsce-Precision-T1700:~$ hadoop fs -ls /home/hduser/Desktop/abc.txt
+Found 2 items
+-rw-r--r--   1 hduser supergroup          0 2023-05-17 10:07 /home/hduser/Desktop/abc.txt/_SUCCESS
+-rw-r--r--   1 hduser supergroup         70 2023-05-17 10:07 /home/hduser/Desktop/abc.txt/part-00000
+hduser@bmsce-Precision-T1700:~$ hadoop fs -cat /home/hduser/Desktop/abc.txt/part-00000
+  15
+a 2
+b 2
+e 3
+f 1
+h 7
+i 7
+j 1
+l 1
+m 1
+o 12
+r 7
+s 6
+t 3
+u 5
+w 5
+y 6
